@@ -136,4 +136,16 @@ class MovieController extends Controller
 
         return redirect()->route('movies.index');
     }
+
+    public function search(Request $request)
+    {
+        if($request->filled('search')){
+            $search = Movie::search($request->search)->get();
+        }else{
+            $search = null;
+        }
+
+        return view('movies.search', compact('search'));
+    }
+
 }

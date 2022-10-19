@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Movie extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     protected $fillable = [
         'name',
@@ -23,5 +24,16 @@ class Movie extends Model
     public function genre()
     {
         return $this->belongsTo(Genre::class, 'genre_id');
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'name' => $this->name,
+            'year' => $this->year,
+            'genre_id' => $this->genre_id,
+            'rating' => $this->rating,
+            'actors' => $this->actors,
+        ];
     }
 }

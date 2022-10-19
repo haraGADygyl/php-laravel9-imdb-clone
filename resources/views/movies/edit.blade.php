@@ -41,7 +41,7 @@
                                 <div>Rating:</div>
                                 <div>
                                     <select name="rating"
-                                            class="text-left inline-flex items-center w-[18rem] py-2 mb-2 rounded-xl bg-gray-200 border border-transparent font-semibold text-lg text-gray-800 hover:bg-gray-400 active:bg-gray-100 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
+                                            class="text-left inline-flex items-center w-[18rem] py-2 mb-2 rounded-xl bg-gray-200 border border-transparent font-semibold text-lg text-gray-800 hover:bg-gray-200 active:bg-gray-100 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
                                         @for($i=1;$i<=10;$i++)
                                             <option value="{{ $i }}" @selected($i == $movie->rating)>{{ $i }}</option>
                                         @endfor
@@ -70,7 +70,7 @@
                                     <div>Genre:</div>
                                     <div>
                                         <select name="genre_id"
-                                                class="text-left items-center w-[18rem] py-2 mb-2 rounded-xl bg-gray-200 border border-transparent font-semibold text-lg text-gray-800 hover:bg-gray-400 active:bg-gray-100 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
+                                                class="text-left items-center w-[18rem] py-2 mb-2 rounded-xl bg-gray-200 border border-transparent font-semibold text-lg text-gray-800 hover:bg-gray-200 active:bg-gray-100 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
                                             @foreach($genres as $genre)
                                                 <option
                                                     value="{{ $genre->id }}" @selected($genre->id == $movie->genre_id)>{{ $genre->name }}
