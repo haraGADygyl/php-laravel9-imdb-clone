@@ -30,13 +30,13 @@
                                 <div>
                                     <div class="flex flex-col justify-between p-4 leading-normal">
                                         <p class="mb-2 font-normal text-gray-700 dark:text-gray-400">
-                                            Rating: {{ $movie->rating }}
+                                            <b>Rating:</b> {{ number_format($movie->averageRating, 2) }} / 10 ({{ $movie->usersRated() }} votes)
                                         </p>
                                         <p class="mb-2 font-normal text-gray-700 dark:text-gray-400">
-                                            Genre: {{ $movie->genre->name }}
+                                            <b>Genre:</b> {{ $movie->genre->name }}
                                         </p>
                                         <p class="mb-2 font-normal text-gray-700 dark:text-gray-400">
-                                            Cast: {{ $movie->actors }}</p>
+                                            <b>Cast:</b> {{ $movie->actors }}</p>
                                         <p class="mb-2 font-normal text-gray-700 dark:text-gray-400">
                                             <a class="inline-flex items-center px-4 py-2 mt-4 bg-orange-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-orange-500 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150"
                                                href="{{ $movie->trailer_link }}" target="_blank">Trailer</a>

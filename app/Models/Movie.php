@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
+use willvincent\Rateable\Rateable;
 
 class Movie extends Model
 {
-    use HasFactory, Searchable;
+    use HasFactory, Searchable, Rateable;
 
     protected $fillable = [
         'name',
         'year',
-        'rating',
         'actors',
         'poster',
         'trailer_link',
@@ -32,7 +32,6 @@ class Movie extends Model
             'name' => $this->name,
             'year' => $this->year,
             'genre_id' => $this->genre_id,
-            'rating' => $this->rating,
             'actors' => $this->actors,
         ];
     }

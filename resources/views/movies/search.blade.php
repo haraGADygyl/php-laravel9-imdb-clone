@@ -70,7 +70,7 @@
                                             </td>
                                             <td class="pb-2 text-center border border-slate-600">{{ $searched->year }}</td>
                                             <td class="pb-2 text-center border border-slate-600">{{ $searched->genre->name }}</td>
-                                            <td class="pb-2 text-center border border-slate-600">{{ $searched->rating }}</td>
+                                            <td class="pb-2 text-center border border-slate-600">{{ number_format($searched->averageRating, 2) }}</td>
                                             <td class="pb-2 pl-3 pr-2 border border-slate-600">{{ $searched->actors }}</td>
                                         </tr>
                                     @endforeach

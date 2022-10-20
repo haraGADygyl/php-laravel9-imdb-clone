@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->year('year');
-            $table->float('rating');
             $table->text('actors');
             $table->string('poster');
             $table->string('trailer_link');

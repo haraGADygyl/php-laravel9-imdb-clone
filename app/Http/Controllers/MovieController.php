@@ -13,6 +13,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use willvincent\Rateable\Rating;
 
 class MovieController extends Controller
 {
@@ -50,17 +51,17 @@ class MovieController extends Controller
      */
     public function store(StoreMovieRequest $request)
     {
-
-        Movie::create([
+        $movie = Movie::create([
             'name' => $request->input('name'),
             'year' => $request->input('year'),
-            'rating' => $request->input('rating'),
             'actors' => $request->input('actors'),
             'poster' => $request->file('poster')->store('posters', 'public'),
             'trailer_link' => $request->input('trailer_link'),
             'genre_id' => $request->input('genre_id'),
             'user_id' => auth()->user()->id,
         ]);
+
+        $movie->rateOnce(intval($request->input('rating')));
 
         return redirect()->route('movies.index');
     }
@@ -90,8 +91,9 @@ class MovieController extends Controller
     public function edit(Movie $movie)
     {
         $genres = Genre::get();
+        $user_rating = Rating::where('user_id', '=', Auth::user()->id)->where('rateable_id', '=', $movie->id)->value('rating');
 
-        return view('movies.edit', compact('movie', 'genres'));
+        return view('movies.edit', compact('movie', 'genres', 'user_rating'));
     }
 
     /**
@@ -113,12 +115,13 @@ class MovieController extends Controller
         $movie->update([
             'name' => $request->input('name'),
             'year' => $request->input('year'),
-            'rating' => $request->input('rating'),
             'actors' => $request->input('actors'),
             'poster' => $poster,
             'trailer_link' => $request->input('trailer_link'),
             'genre_id' => $request->input('genre_id'),
         ]);
+
+        $movie->rateOnce(intval($request->input('rating')));
 
         return redirect()->route('movies.index');
     }
@@ -139,13 +142,12 @@ class MovieController extends Controller
 
     public function search(Request $request)
     {
-        if($request->filled('search')){
+        if ($request->filled('search')) {
             $search = Movie::search($request->search)->get();
-        }else{
+        } else {
             $search = null;
         }
 
         return view('movies.search', compact('search'));
     }
-
 }
