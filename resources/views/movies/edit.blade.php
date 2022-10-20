@@ -3,6 +3,7 @@
         <h2 class="font-semibold text-4xl text-white leading-tight">
             {{ __('Edit Movie') }}
         </h2>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/5.0.7/sweetalert2.min.css" rel="stylesheet">
     </x-slot>
 
     <div class="py-1 bg-gray-800 text-white">
@@ -118,12 +119,12 @@
                                 <button type="button"
                                         class="inline-flex items-center px-6 py-3 mb-4 bg-red-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-600 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150"
                                         onclick="event.preventDefault();
-                                            document.getElementById('delete-task-form').submit();"
+                                            document.getElementById('delete-task-form').requestSubmit();"
                                 >Delete
                                 </button>
                             </div>
                         </form>
-                        <form method="post" id="delete-task-form" action=" {{ route('movies.destroy', $movie) }}">
+                        <form method="post"  id="delete-task-form" action="{{ route('movies.destroy', $movie) }}" onsubmit="return confirm('Are you sure you want to delete this usere?');">
                             @method('DELETE')
                             @csrf
                         </form>
