@@ -16,6 +16,7 @@
                                 <div>Name:</div>
                                 <div>
                                     <input type="text" name="name" placeholder="Add a movie name"
+                                           value="{{ old('name') }}"
                                            class="mb-2 rounded-xl w-[18rem] bg-gray-200 text-lg text-gray-800">
                                 </div>
                                 <div>
@@ -27,7 +28,7 @@
                             <div>
                                 <div>Year:</div>
                                 <div>
-                                    <input type="number" name="year" min="1800" placeholder="Add a movie year"
+                                    <input type="number" name="year" min="1900" placeholder="Add a movie year" value="{{ old('year') }}"
                                            class="mb-2 rounded-xl w-[18rem] bg-gray-200 text-lg text-gray-800">
                                 </div>
                                 <div>
@@ -43,7 +44,8 @@
                                             class="text-left inline-flex items-center w-[18rem] py-2 mb-2 rounded-xl bg-gray-200 border border-transparent font-semibold text-lg text-gray-800 hover:bg-gray-200 active:bg-gray-300 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
                                         <option selected disabled hidden>Choose a rating</option>
                                         @for($i=1;$i<=10;$i++)
-                                            <option value="{{ $i }}">{{ $i }}</option>
+                                            <option value="{{ $i }}" @if(old('rating') == $i)
+                                                selected @endif>{{ $i }}</option>
                                         @endfor
                                     </select>
                                 </div>
@@ -57,6 +59,7 @@
                                 <div>Actors:</div>
                                 <div>
                                     <input type="text" name="actors" placeholder="Add movie actors"
+                                           value="{{ old('actors') }}"
                                            class="mb-2 rounded-xl w-[18rem] bg-gray-200 text-lg text-gray-800">
                                 </div>
                                 <div>
@@ -71,9 +74,11 @@
                                     <div>
                                         <select name="genre_id"
                                                 class="text-left items-center w-[18rem] py-2 mb-2 rounded-xl bg-gray-200 border border-transparent font-semibold text-lg text-gray-800 hover:bg-gray-200 active:bg-gray-100 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
+
                                             <option selected disabled hidden>Choose a genre</option>
                                             @foreach($genres as $genre)
-                                                <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+                                                <option value="{{ $genre->id }}" @if(old('genre_id') == $genre->id)
+                                                    selected @endif>{{ $genre->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -98,6 +103,7 @@
                                 <div>Trailer:</div>
                                 <div>
                                     <input type="url" name="trailer_link" placeholder="Add a trailer link"
+                                           value="{{ old('trailer_link') }}"
                                            class="mb-2 rounded-xl w-[18rem] bg-gray-200 text-lg text-gray-800">
                                 </div>
                                 <div>

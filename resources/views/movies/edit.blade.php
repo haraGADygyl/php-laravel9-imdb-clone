@@ -17,7 +17,7 @@
                             <div>
                                 <div>Name:</div>
                                 <div>
-                                    <input type="text" name="name" value="{{ $movie->name }}"
+                                    <input type="text" name="name" value="{{ ($movie->name) }}"
                                            class="mb-2 rounded-xl w-[18rem] bg-gray-200 text-lg text-gray-800">
                                 </div>
                                 <div>
@@ -29,7 +29,7 @@
                             <div>
                                 <div>Year:</div>
                                 <div>
-                                    <input type="number" name="year" min="1800" value="{{ $movie->year }}"
+                                    <input type="number" name="year" min="1900" value="{{ $movie->year }}"
                                            class="mb-2 rounded-xl w-[18rem] bg-gray-200 text-lg text-gray-800">
                                 </div>
                                 <div>

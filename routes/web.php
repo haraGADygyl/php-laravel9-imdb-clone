@@ -17,8 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/search', [\App\Http\Controllers\MovieController::class, 'search'])->name('search');
-Route::get('/my-movies', [\App\Http\Controllers\MovieController::class, 'my_movies'])->name('my-movies');
-Route::resource('/movies', \App\Http\Controllers\MovieController::class);
+Route::middleware('auth')->group(function () {
+    Route::get('/search', [\App\Http\Controllers\MovieController::class, 'search'])->name('search');
+    Route::get('/my-movies', [\App\Http\Controllers\MovieController::class, 'my_movies'])->name('my-movies');
+    Route::resource('/movies', \App\Http\Controllers\MovieController::class);
+});
+
 
 require __DIR__.'/auth.php';

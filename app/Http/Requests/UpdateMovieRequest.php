@@ -25,7 +25,7 @@ class UpdateMovieRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'year' => 'required|int|min:1800',
+            'year' => 'required|int|min:1900',
             'rating' => 'required|min:1|max:10',
             'actors' => 'required',
             'poster' => 'nullable|mimes:jpg,jpeg,png|max:8192',

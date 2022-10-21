@@ -17,6 +17,11 @@ use willvincent\Rateable\Rating;
 
 class MovieController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('is_admin', ['only' => ['edit', 'update', 'destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -140,6 +145,10 @@ class MovieController extends Controller
         return redirect()->route('movies.index');
     }
 
+    /**
+     * @param Request $request
+     * @return Application|Factory|View
+     */
     public function search(Request $request)
     {
         if ($request->filled('search')) {

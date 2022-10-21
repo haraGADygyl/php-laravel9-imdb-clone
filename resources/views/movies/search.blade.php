@@ -36,19 +36,28 @@
                                         <th style="width:8%" class="pb-2 pt-2 border border-slate-600">
                                             Poster
                                         </th>
-                                        <th style="width:30%; cursor: pointer;" class="pb-2 pt-2 border border-slate-600">
+                                        <th style="width:30%; cursor: pointer;"
+                                            class="pb-2 pt-2 border border-slate-600">
                                             Name
                                         </th>
-                                        <th style="width:5%; cursor: pointer;" class="pb-2 pt-2 border border-slate-600">
+                                        <th style="width:5%; cursor: pointer;"
+                                            class="pb-2 pt-2 border border-slate-600">
                                             Year
                                         </th>
-                                        <th style="width:5%; cursor: pointer;" class="pb-2 pt-2 border border-slate-600">
+                                        <th style="width:5%; cursor: pointer;"
+                                            class="pb-2 pt-2 border border-slate-600">
                                             Genre
                                         </th>
-                                        <th style="width:5%; cursor: pointer;" class="pb-2 pt-2 border border-slate-600">
+                                        <th style="width:5%; cursor: pointer;"
+                                            class="pb-2 pt-2 border border-slate-600">
                                             Rating
                                         </th>
-                                        <th style="width:30%; cursor: pointer;" class="pb-2 pt-2 border border-slate-600">
+                                        <th style="width:5%; cursor: pointer;"
+                                            class="pb-2 pt-2 border border-slate-600">
+                                            Votes
+                                        </th>
+                                        <th style="width:30%; cursor: pointer;"
+                                            class="pb-2 pt-2 border border-slate-600">
                                             Actors
                                         </th>
                                     </tr>
@@ -65,12 +74,19 @@
                                                         alt="">
                                                 </a>
                                             </td>
-                                            <td class="pb-2 pl-3 pr-2 border border-slate-600">
-                                                <a href="{{ route('movies.edit', $searched) }}">{{ $searched->name }}</a>
-                                            </td>
+                                            @if(Auth::user()->is_admin)
+                                                <td class="pb-2 pl-3 pr-2 border border-slate-600">
+                                                    <a href="{{ route('movies.edit', $searched) }}">{{ $searched->name }}</a>
+                                                </td>
+                                            @else
+                                                <td class="pb-2 pl-3 pr-2 border border-slate-600">
+                                                    {{ $searched->name }}
+                                                </td>
+                                            @endif
                                             <td class="pb-2 text-center border border-slate-600">{{ $searched->year }}</td>
                                             <td class="pb-2 text-center border border-slate-600">{{ $searched->genre->name }}</td>
                                             <td class="pb-2 text-center border border-slate-600">{{ number_format($searched->averageRating, 2) }}</td>
+                                            <td class="pb-2 text-center border border-slate-600">{{ $searched->timesRated() }}</td>
                                             <td class="pb-2 pl-3 pr-2 border border-slate-600">{{ $searched->actors }}</td>
                                         </tr>
                                     @endforeach
